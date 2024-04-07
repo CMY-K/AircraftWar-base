@@ -19,13 +19,12 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
      */
     protected int maxHp;
     protected int hp;
-     protected int score;
 
-    public AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp,int score) {
+
+    public AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY);
         this.hp = hp;
         this.maxHp = hp;
-        this.score=score;
     }
 
     public void decreaseHp(int decrease){
@@ -34,6 +33,7 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
             hp=0;
             vanish();
         }
+
         hp=min(hp,maxHp);
     }
 
@@ -41,9 +41,6 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
         return hp;
     }
 
-    public int getScore() {
-        return score;
-    }
 
 
     /**

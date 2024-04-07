@@ -13,17 +13,12 @@ import java.util.List;
  *
  * @author hitsz
  */
-public class MobEnemy extends AbstractAircraft {
-
-    /*private int score=30;
-
-    public int getScore(){
-        return this.score;
-    }*/
+public class MobEnemy extends AbstractEnemy {
 
     public MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp,int score) {
         super(locationX, locationY, speedX, speedY, hp, score);
     }
+
 
     @Override
     public void forward() {
@@ -35,7 +30,6 @@ public class MobEnemy extends AbstractAircraft {
     }
 
     @Override
-
     public List<BaseBullet> shoot() {
         return new LinkedList<>();
     }
