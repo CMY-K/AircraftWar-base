@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class HeroAircraft{
+    - {static} instance：HeroAircraft
+    - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward(): void
+    + setShootNum(int num)
+    + shoot() :List<BaseBullet>
+    + {static} getInstance():HeroAircraft
+}
+note right of HeroAircraft
+if (instance == null) {
+       instance = new HeroAircraft(Main.WINDOW_WIDTH / 2,
+                    Main.WINDOW_HEIGHT - ImageManager.HERO_IMAGE.getHeight() ,
+                    0, 0, 1000);
+        }
+return instance;
+end note
+
+() client
+
+HeroAircraft --> HeroAircraft
+
+client --> HeroAircraft
+
+
+
+@enduml

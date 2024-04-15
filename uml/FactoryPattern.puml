@@ -1,0 +1,54 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "class FactoryMethod(工厂方法模式)" #DDDDDD {
+
+    interface EnemyCreator
+    {
+    +createProduct():Product
+    }
+
+    class MobCreator
+    {
+    +createProduct():Product
+    }
+
+    class EliteCreator
+    {
+    +createProduct():Product
+     }
+
+    class BossCreator
+    {
+    +createProduct():Product
+     }
+
+    abstract class AbstractEnemy
+    {
+    +method():void
+    }
+
+    class MobEnemy
+    {
+    +method():void
+    }
+
+    class EliteEnemy
+    {
+    +method():void
+    }
+
+    class BossEnemy
+    {
+    +method():void
+    }
+
+    AbstractEnemy <|.. MobEnemy
+    AbstractEnemy <|.. EliteEnemy
+    AbstractEnemy <|.. BossEnemy
+    EnemyCreator <|-- EliteCreator
+    EnemyCreator <|-- MobCreator
+    EnemyCreator <|-- BossCreator
+    AbstractEnemy <.. EnemyCreator
+}
+@enduml

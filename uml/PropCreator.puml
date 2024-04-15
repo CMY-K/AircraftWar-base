@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class PropCreatorPattern
+{
+ + CreatorPattern(List<AbstractProps> props): void
+}
+
+abstract class AbstractProps
+{
+ + AbstractProps (int locationX,int locationY, int speedX, int speedY )
+ + {abstract} getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets):int
+}
+interface PropCreator
+{
+ + {abstract} createProp(): AbstractProps
+}
+
+PropCreatorPattern..>AbstractProps
+PropCreatorPattern..> PropCreator
+
+class Blood
+{
+    - power:int
+    + Blood(int locationX, int locationY, int speedX, int speedY)
+    + getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets): int
+    + getPower(): int
+}
+
+class Bomb
+{
+    + Bomb(int locationX, int locationY, int speedX, int speedY)
+    + getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets): int
+}
+
+class BulletProp
+{
+    + BulletProp(int locationX, int locationY, int speedX, int speedY)
+    + getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets): int
+}
+
+class BloodCreator
+{
+
+    - locationX: int
+    - locationY：int
+    - speedX: int
+    - speedY: int
+    + createProp():AbstractProps
+}
+
+
+class BombCreator
+{
+    - locationX: int
+    - locationY：int
+    - speedX: int
+    - speedY: int
+    + createProp():AbstractProps
+}
+
+class BulletCreator
+{
+    - locationX: int
+    - locationY：int
+    - speedX: int
+    - speedY: int
+    + createProp():AbstractProps
+}
+
+PropCreator <|.. BloodCreator
+PropCreator <|.. BombCreator
+PropCreator <|.. BulletCreator
+
+AbstractProps <|-- Blood
+AbstractProps <|-- Bomb
+AbstractProps <|-- BulletProp
+
+BloodCreator <.. Blood
+BombCreator <.. Bomb
+BulletCreator <..  BulletProp
+
+
+
+@enduml

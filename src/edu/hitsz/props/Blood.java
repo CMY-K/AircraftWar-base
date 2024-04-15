@@ -1,29 +1,18 @@
 package edu.hitsz.props;
 
-
-import edu.hitsz.aircraft.AbstractAircraft;
 import edu.hitsz.aircraft.AbstractEnemy;
 import edu.hitsz.aircraft.HeroAircraft;
-import edu.hitsz.application.Game;
 import edu.hitsz.bullet.BaseBullet;
-import edu.hitsz.application.Main;
-import edu.hitsz.basic.AbstractFlyingObject;
 
 import java.util.List;
 
-/**
-加血道具：可使英雄机恢复一定血量， 但不能超过英雄机初始的最大血量
-*/
+public class Blood extends AbstractProps {
 
-public class Blood extends  AbstractProps{
+    private int power = -30;
 
 
-    public int power = -30;
-
-
-    public Blood(int locationX, int locationY, int speedX, int speedY,int power){
+    public Blood(int locationX, int locationY, int speedX, int speedY){
         super(locationX, locationY, speedX, speedY);
-        this.power=power;
     }
 
     /**
@@ -32,6 +21,7 @@ public class Blood extends  AbstractProps{
     @Override
     public int getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets) {
         heroAircraft.decreaseHp(power);
+        heroAircraft.decreaseHp(this.power);
         this.vanish();
         return 0;
     }
@@ -39,5 +29,4 @@ public class Blood extends  AbstractProps{
     public int getPower() {
         return power;
     }
-
 }

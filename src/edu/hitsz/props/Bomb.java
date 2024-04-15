@@ -37,8 +37,9 @@ public class Bomb extends  AbstractProps{
         for(BaseBullet EnemyBullet:enemyBullets){
             EnemyBullet.vanish();
         }
-        System.out.println("BombSupply active!");
+        System.out.println("BombSupply active!"+nowscore);
         this.vanish();
+
         return nowscore;
     }
 
