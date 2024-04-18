@@ -2,11 +2,10 @@ package edu.hitsz.aircraft;
 
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
-import edu.hitsz.bullet.BaseBullet;
-import edu.hitsz.bullet.DirectShoot;
-import edu.hitsz.bullet.EnemyBullet;
+import edu.hitsz.bullet.*;
 import edu.hitsz.props.AbstractProps;
-import edu.hitsz.props.*;
+import edu.hitsz.props.PropCreatorPattern;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  *精英敌机，游戏玩家操控
  * @author hitsz
  */
-public class EliteEnemy extends AbstractEnemy {
+public class ElitePlus extends AbstractEnemy {
     /**
      * @param locationX 敌机位置x坐标
      * @param locationY 敌机位置y坐标
@@ -25,17 +24,20 @@ public class EliteEnemy extends AbstractEnemy {
      */
 
 
-    public EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp,int score) {
+    public ElitePlus(int locationX, int locationY, int speedX, int speedY, int hp,int score) {
         super(locationX, locationY, speedX, speedY, hp, score);
-        this.strategy= new DirectShoot();
+        this.shootNum=3;
+        this.strategy= new ScatterShoot();
     }
+
+
 
 
     @Override
     public  void CreateProp(List<AbstractProps> props){
         PropCreatorPattern creator=new PropCreatorPattern();
         creator.CreatorPattern(props);
-
     }
+
 
 }

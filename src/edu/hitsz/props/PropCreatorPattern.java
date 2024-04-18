@@ -12,19 +12,24 @@ public class PropCreatorPattern {
         PropCreator propCreator;
         AbstractProps prop=null;
 
-        if (rand.nextDouble() < 0.05) {
+        if (rand.nextDouble() < 0.2) {
             // 生成第一种道具
             propCreator = new BloodCreator();
             prop = propCreator.createProp();
 
-        } else if (rand.nextDouble() < 0.1) {
+        } else if (rand.nextDouble() < 0.4) {
             // 生成第二种道具
             propCreator = new BombCreator();
             prop = propCreator.createProp();
 
-        } else if (rand.nextDouble() < 0.2){
+        } else if (rand.nextDouble() < 0.6){
             // 生成第三种道具
             propCreator = new BulletCreator();
+            prop = propCreator.createProp();
+        }
+        else if (rand.nextDouble() < 0.8){
+            // 生成第四种道具
+            propCreator = new BulletPlusCreator();
             prop = propCreator.createProp();
         }
         if(prop!=null) props.add(prop);

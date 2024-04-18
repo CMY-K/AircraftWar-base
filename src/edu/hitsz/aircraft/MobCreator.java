@@ -19,6 +19,7 @@ public class MobCreator implements EnemyCreator {
     @Override
     public AbstractEnemy createEnemy() {
         return new MobEnemy(this.locationX,this.locationY, this.speedX,  this.speedY, this.hp, this.score);
+
     }
 
     public int getScore(){return this.score;}

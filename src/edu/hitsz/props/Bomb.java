@@ -29,7 +29,7 @@ public class Bomb extends  AbstractProps{
         int nowscore=0;
         for(AbstractEnemy Enemy:enemyAircrafts){
             if(!Enemy.notValid()) {
-                nowscore+=(Enemy.getScore());
+                nowscore+=Enemy.getScore();
                 Enemy.vanish();
             }
         }

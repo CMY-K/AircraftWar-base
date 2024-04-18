@@ -3,6 +3,9 @@ package edu.hitsz.aircraft;
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
 import edu.hitsz.bullet.BaseBullet;
+import edu.hitsz.props.AbstractProps;
+import edu.hitsz.props.*;
+
 
 import java.util.List;
 
@@ -20,16 +23,18 @@ public abstract class AbstractEnemy extends AbstractAircraft{
 
 
 
-    protected  int score;
-
     public AbstractEnemy(int locationX, int locationY, int speedX, int speedY, int hp, int score){
-        super(locationX,locationY,speedX,speedY,hp);
-        this.score=score;
+        super(locationX,locationY,speedX,speedY,hp,score);
     }
 
+    @Override
+    public void forward() {
+        super.forward();
+        if(locationY>=Main.WINDOW_HEIGHT){
+            this.vanish();
+        }
+    }
 
-
-    public abstract List<BaseBullet> shoot();
-
+    public abstract void CreateProp(List<AbstractProps> props);
 
 }

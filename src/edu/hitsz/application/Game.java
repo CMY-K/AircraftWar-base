@@ -109,7 +109,8 @@ public class Game extends JPanel {
                 EnemyCreatorPattern enemyCreatorPattern = new EnemyCreatorPattern();
                 enemyCreatorPattern.CreatorPattern(
                         enemyAircrafts,
-                        enemyMaxNumber
+                        enemyMaxNumber,
+                        score
                 );
                 shootAction();
             }
@@ -247,11 +248,9 @@ public class Game extends JPanel {
 
                     if (enemyAircraft.notValid()) {
                         // TODO 获得分数，产生道具补给
-                        if(enemyAircraft instanceof EliteEnemy) {
-                            PropCreatorPattern creator=new PropCreatorPattern();
-                            creator.CreatorPattern(props);
-                        }
-                        score += 10;
+
+                        enemyAircraft.CreateProp(props);
+                        score+=10;
                     }
                 }
                 // 英雄机 与 敌机 相撞，均损毁

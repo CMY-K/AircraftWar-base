@@ -1,25 +1,26 @@
 package edu.hitsz.props;
 
-
-import edu.hitsz.aircraft.*;
+import edu.hitsz.aircraft.AbstractEnemy;
+import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.bullet.BaseBullet;
+import edu.hitsz.bullet.CircumShoot;
 import edu.hitsz.bullet.DirectShoot;
 import edu.hitsz.bullet.ScatterShoot;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-import java.util.List;
 
 /**
  火力道具：英雄机切换弹道并持续一段时间，结束后恢复原状态
  */
 
-public class BulletProp extends  AbstractProps{
+public class BulletPlusProp extends  AbstractProps{
 
-    public BulletProp(int locationX, int locationY, int speedX, int speedY){
+    public BulletPlusProp(int locationX, int locationY, int speedX, int speedY){
         super(locationX, locationY, speedX, speedY);
     }
 
@@ -29,9 +30,9 @@ public class BulletProp extends  AbstractProps{
     @Override
     public int getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets) {
 
-       ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-        heroAircraft.setStrategy(new ScatterShoot());
+        heroAircraft.setStrategy(new CircumShoot());
 
         // 延迟5秒后执行恢复默认射击次数的操作
         scheduler.schedule(() -> {
