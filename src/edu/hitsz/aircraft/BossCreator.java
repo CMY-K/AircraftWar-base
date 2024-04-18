@@ -12,7 +12,7 @@ public class BossCreator implements EnemyCreator {
 
     private int speedY = 0;
 
-    private int hp = 30;
+    private int hp = 100;
 
     private int score = 70;
     @Override

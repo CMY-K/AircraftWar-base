@@ -2,6 +2,8 @@ package edu.hitsz.aircraft;
 
 import edu.hitsz.application.Main;
 import edu.hitsz.bullet.BaseBullet;
+import edu.hitsz.props.AbstractProps;
+import edu.hitsz.props.PropCreatorPattern;
 
 
 import java.util.LinkedList;
@@ -26,5 +28,9 @@ public class MobEnemy extends AbstractEnemy {
         return new LinkedList<>();
     }
 
+    @Override
+    public  void CreateProp(List<AbstractProps> props){
+
+    }
 
 }

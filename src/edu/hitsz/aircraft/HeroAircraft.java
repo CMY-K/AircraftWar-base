@@ -28,6 +28,7 @@ public class HeroAircraft extends AbstractAircraft {
      */
     private HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
+        this.maxHp=hp;
         this.direction=-1;
     }
 
@@ -37,7 +38,7 @@ public class HeroAircraft extends AbstractAircraft {
     }
 
     public void setShootNum(int num){
-        this.shootNum=num;
+        this.shootNum=Math.max(0,num);
     }
 
 
