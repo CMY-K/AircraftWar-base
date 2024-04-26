@@ -1,14 +1,18 @@
 package edu.hitsz.application;
 
+import edu.hitsz.Dao.*;
 import edu.hitsz.aircraft.*;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.basic.AbstractFlyingObject;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import edu.hitsz.props.*;
+import edu.hitsz.Dao.*;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
@@ -39,6 +43,8 @@ public class Game extends JPanel {
     private final List<BaseBullet> enemyBullets;
 
     private final List<AbstractProps> props ;
+
+    private final List<Player> players ;
 
     /**
      * 屏幕中出现的敌机最大数量
@@ -76,7 +82,7 @@ public class Game extends JPanel {
         heroBullets = new LinkedList<>();
         enemyBullets = new LinkedList<>();
         props = new LinkedList<>();
-
+        players = new LinkedList<>();
         /**
          * Scheduled 线程池，用于定时任务调度
          * 关于alibaba code guide：可命名的 ThreadFactory 一般需要第三方包
@@ -141,6 +147,11 @@ public class Game extends JPanel {
                 System.out.println("Game Over!");
             }
 
+            //游戏结束，储存数据
+            if(gameOverFlag){
+                DaoPattern daoPattern = new DaoPattern();
+                daoPattern.DaoPatternNow(score);
+            }
         };
 
         /**
