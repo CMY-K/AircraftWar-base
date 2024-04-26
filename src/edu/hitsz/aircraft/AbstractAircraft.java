@@ -82,6 +82,30 @@ public abstract class AbstractAircraft extends AbstractFlyingObject{
 
     public int getScore(){return score;}
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setShootNum(int shootNum) {
+        this.shootNum = shootNum;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
     public int getShootNum(){return shootNum;}
     public int getDirection(){return direction;}
 
@@ -92,7 +116,7 @@ public abstract class AbstractAircraft extends AbstractFlyingObject{
      *  非可射击对象空实现，返回null
      */
     public List<BaseBullet> shoot(){
-            return strategy.executeShooting(this);
+            return this.strategy.executeShooting(this);
     }
 
 

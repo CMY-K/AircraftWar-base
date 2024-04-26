@@ -37,7 +37,7 @@ public class BulletPlusProp extends  AbstractProps{
         // 延迟5秒后执行恢复默认射击次数的操作
         scheduler.schedule(() -> {
             heroAircraft.setStrategy(new DirectShoot());
-        }, 5, TimeUnit.SECONDS);
+        }, 10, TimeUnit.SECONDS);
         System.out.println("FireSupply active!");
         this.vanish();
         return 0;
