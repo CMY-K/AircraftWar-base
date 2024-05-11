@@ -35,16 +35,9 @@ public class BulletPlusProp extends  AbstractProps{
         heroAircraft.setStrategy(new CircumShoot());
 
         // 延迟5秒后执行恢复默认射击次数的操作
-        Runnable r = () -> { try {
-            heroAircraft.setStrategy(new CircumShoot());
-            Thread.sleep(5000);
-            // 持续时间结束后恢复直射状态
+        scheduler.schedule(() -> {
             heroAircraft.setStrategy(new DirectShoot());
-        } catch (InterruptedException e) {
-            e.printStackTrace(); }
-
-        };
-        new Thread(r, " 线程 2").start();
+        }, 5, TimeUnit.SECONDS);
         System.out.println("FireSupply active!");
         this.vanish();
         return 0;
