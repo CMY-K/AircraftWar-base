@@ -41,7 +41,7 @@ public class EnemyCreatorPattern {
                 enemy = enemyCreator.createEnemy();
                 enemyAircrafts.add(enemy);
             }
-            else if(rand.nextDouble() < 0.8) {
+            else if(rand.nextDouble() < 0.9) {
 
                 enemyCreator = new ElitePlusCreator();
                 enemy = enemyCreator.createEnemy();

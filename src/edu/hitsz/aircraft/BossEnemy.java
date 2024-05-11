@@ -1,10 +1,12 @@
 package edu.hitsz.aircraft;
 
+import edu.hitsz.Game.Game;
 import edu.hitsz.application.Main;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.bullet.CircumShoot;
 import edu.hitsz.bullet.EnemyBullet;
 import edu.hitsz.bullet.HeroBullet;
+import edu.hitsz.music.MusicThread;
 import edu.hitsz.props.AbstractProps;
 import edu.hitsz.props.PropCreatorPattern;
 
@@ -22,11 +24,14 @@ import java.util.List;
 public class BossEnemy extends AbstractEnemy {
 
 
+   // boolean openMusic;
+   MusicThread musicThread;
 
     public BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp, int score) {
         super(locationX, locationY, speedX, speedY, hp,score);
         this.shootNum=20;
         this.setStrategy(new CircumShoot());
+        this.startMusic();
     }
 
 
@@ -36,6 +41,21 @@ public class BossEnemy extends AbstractEnemy {
             PropCreatorPattern creator = new PropCreatorPattern();
             creator.CreatorPattern(props);
         }
+    }
+
+
+    public void startMusic(){
+        if(Game.openMusic) {
+            this.musicThread = new MusicThread("src/videos/bgm_boss.wav");
+            this.musicThread.start();
+        }
+        else{
+            this.musicThread = null;
+        }
+    }
+
+    public void endMusic(){
+        this.musicThread.stopMusic();
     }
 
 }

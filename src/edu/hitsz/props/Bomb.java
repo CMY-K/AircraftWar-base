@@ -31,6 +31,9 @@ public class Bomb extends  AbstractProps{
             if(!Enemy.notValid()) {
                 nowscore+=Enemy.getScore();
                 Enemy.vanish();
+                if(Enemy instanceof BossEnemy){
+                    ((BossEnemy) Enemy).endMusic();
+                }
             }
         }
 

@@ -29,16 +29,21 @@ public class BulletProp extends  AbstractProps{
     @Override
     public int getEffect(HeroAircraft heroAircraft, List<AbstractEnemy> enemyAircrafts, List<BaseBullet> enemyBullets) {
 
-       ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-
         heroAircraft.setStrategy(new ScatterShoot());
 
         // 延迟5秒后执行恢复默认射击次数的操作
-        scheduler.schedule(() -> {
+        Runnable r = () -> { try {
+             heroAircraft.setStrategy(new ScatterShoot());
+              Thread.sleep(5000);
+              // 持续时间结束后恢复直射状态
             heroAircraft.setStrategy(new DirectShoot());
-        }, 5, TimeUnit.SECONDS);
+             } catch (InterruptedException e) {
+            e.printStackTrace(); }
+        };
+        new Thread(r, " 线程 1").start();
         System.out.println("FireSupply active!");
         this.vanish();
         return 0;
     }
 }
+

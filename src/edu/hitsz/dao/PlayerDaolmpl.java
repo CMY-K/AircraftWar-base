@@ -1,16 +1,29 @@
-package edu.hitsz.Dao;
+package edu.hitsz.dao;
 
 import java.io.*;
 import java.util.*;
+import edu.hitsz.layout.*;
 
 public class PlayerDaolmpl implements PlayerDao{
 
     // 从文件中读取玩家列表
     private List<Player> players;
+    private int score;
 
-    public PlayerDaolmpl(){
+    public PlayerDaolmpl(int score){
         players = new LinkedList<>();
+        this.score=score;
     }
+    public int getScore(){return this.score;}
+
+    // 比较器，用于指定按照 score 降序排序
+    public static class ScoreComparator implements Comparator<Player> {
+        @Override
+        public int compare(Player p1, Player p2) {
+            return Integer.compare(p2.getScore(), p1.getScore());
+        }
+    }
+
     // 从文件中读取玩家列表
     @Override
     public void readFromTextFile(String fileName) {
@@ -60,12 +73,15 @@ public class PlayerDaolmpl implements PlayerDao{
             cnt++;
             System.out.println("rank" + cnt + " " + player.getName()+" "+player.getScore()+" "+ player.getTime());
         }
+
+
     }
 
 
     // 添加玩家
     public void doAdd(Player player) {
         this.players.add(player);
+        Collections.sort(players, new ScoreComparator());
     }
 
     // 根据玩家名查找玩家
@@ -86,17 +102,12 @@ public class PlayerDaolmpl implements PlayerDao{
 
 
     // 删除玩家
-    public void doDelete(String name) {
+    public void doDelete(int rank) {
         Iterator<Player> iterator = players.iterator();
-        while (iterator.hasNext()) {
-            Player player = iterator.next();
-            if (player.getName().equalsIgnoreCase(name)) {
-                iterator.remove();
-                System.out.println("已删除玩家：" + player);
-                return;
-            }
+        if (rank >= 0 && rank < players.size()) {
+            players.remove(rank); // 根据排名删除玩家
         }
-        System.out.println("未找到名为 " + name + " 的玩家，无法删除。");
+        Collections.sort(players, new ScoreComparator());
     }
 
 }

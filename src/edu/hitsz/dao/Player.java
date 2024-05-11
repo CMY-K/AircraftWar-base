@@ -1,9 +1,4 @@
-package edu.hitsz.Dao;
-
-import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+package edu.hitsz.dao;
 
 public class Player {
     private int score;
