@@ -1,39 +1,48 @@
-package edu.hitsz.dao;
+package edu.hitsz.Dao;
 
-import edu.hitsz.application.Main;
-import edu.hitsz.layout.RankBoard;
+import edu.hitsz.application.Game;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
-
 public class DaoPattern {
-
-    public static final CardLayout cardLayout = new CardLayout(0,0);
-    public static final JPanel cardPanel = new JPanel(cardLayout);
-
-    private List<Player> players;
-
-    private int score;
-    private  PlayerDaolmpl playerDao;
-
     public  void DaoPatternNow(int score) {
-
-        this.score=score;
+        PlayerDao playerDao = new PlayerDaolmpl();
         Scanner scanner = new Scanner(System.in);
-        playerDao = new PlayerDaolmpl(score);
-        System.out.println("hh");
-        this.Display();
 
-    }
+        System.out.print("你要存储信息吗？（y/n）");
+        String choose = scanner.nextLine();
+        if(Objects.equals(choose, "y")) {
+            // 模拟游戏过程
+            System.out.print("请输入玩家名：");
+            String playerName = scanner.nextLine();
 
-    public void Display(){
-        RankBoard rankBoard = new RankBoard(playerDao);
-        Main.cardPanel.add(rankBoard.getMainPanel());
-        Main.cardLayout.last(Main.cardPanel);
-        rankBoard.showInputDialog();
+            // 获取当前时间
+            Date currentTime = new Date();
+
+            // 设置日期格式
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            // 格式化当前时间为指定格式的字符串
+            String formattedTime = dateFormat.format(currentTime);
+
+            Player player = new Player(score, playerName, formattedTime);
+
+            playerDao.doAdd(player);
+            playerDao.readFromTextFile("game_scores.txt");
+
+            System.out.print("你要删除信息吗？（y/n）");
+            String chooseDelete = scanner.nextLine();
+
+            if(Objects.equals(chooseDelete, "y")){
+                System.out.print("请输入玩家名：");
+                String playerDeleteName = scanner.nextLine();
+                playerDao.doDelete(playerDeleteName);
+            }
+            playerDao.writeToTextFile("game_scores.txt");
+            playerDao.printPlayersByScore();
+        }
     }
 }
-
